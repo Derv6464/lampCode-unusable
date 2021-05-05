@@ -66,10 +66,10 @@ function setHour () {
     basic.showString("Set hour")
     while (ConTime == 0) {
         basic.showNumber(Hour)
-        if (input.buttonIsPressed(Button.A)) {
+        if (input.buttonIsPressed(Button.A) && !(input.buttonIsPressed(Button.AB))) {
             Hour += 1
             basic.showNumber(Hour)
-        } else if (input.buttonIsPressed(Button.B)) {
+        } else if (input.buttonIsPressed(Button.B) && !(input.buttonIsPressed(Button.AB))) {
             Hour += -1
             basic.showNumber(Hour)
         } else if (input.buttonIsPressed(Button.AB)) {
