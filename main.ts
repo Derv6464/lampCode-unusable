@@ -1,12 +1,12 @@
 function setEnd () {
     ConTime = 0
-    basic.showString("Set end hrs")
+    basic.showString("eh")
     while (ConTime == 0) {
         basic.showNumber(endHr)
-        if (input.buttonIsPressed(Button.A)) {
+        if (input.buttonIsPressed(Button.A) && !(input.buttonIsPressed(Button.AB))) {
             endHr += 1
             basic.showNumber(endHr)
-        } else if (input.buttonIsPressed(Button.B)) {
+        } else if (input.buttonIsPressed(Button.B) && !(input.buttonIsPressed(Button.AB))) {
             endHr += -1
             basic.showNumber(endHr)
         } else if (input.buttonIsPressed(Button.AB)) {
@@ -19,13 +19,13 @@ function setEnd () {
         }
     }
     ConTime = 0
-    basic.showString("Set start min")
+    basic.showString("em")
     while (ConTime == 0) {
         basic.showNumber(endMin)
-        if (input.buttonIsPressed(Button.A)) {
+        if (input.buttonIsPressed(Button.A) && !(input.buttonIsPressed(Button.AB))) {
             endMin += 1
             basic.showNumber(endMin)
-        } else if (input.buttonIsPressed(Button.B)) {
+        } else if (input.buttonIsPressed(Button.B) && !(input.buttonIsPressed(Button.AB))) {
             endMin += -1
             basic.showNumber(endMin)
         } else if (input.buttonIsPressed(Button.AB)) {
@@ -38,16 +38,20 @@ function setEnd () {
         }
     }
 }
+function long () {
+    Kitronik_Robotics_Board.motorOn(Kitronik_Robotics_Board.Motors.Motor1, Kitronik_Robotics_Board.MotorDirection.Forward, 25)
+    Kitronik_Robotics_Board.motorOn(Kitronik_Robotics_Board.Motors.Motor1, Kitronik_Robotics_Board.MotorDirection.Reverse, 25)
+}
 function setMin () {
     Min = 0
     ConTime = 0
-    basic.showString("Set min")
+    basic.showString("m")
     while (ConTime == 0) {
         basic.showNumber(Min)
-        if (input.buttonIsPressed(Button.A)) {
+        if (input.buttonIsPressed(Button.A) && !(input.buttonIsPressed(Button.AB))) {
             Min += 1
             basic.showNumber(Min)
-        } else if (input.buttonIsPressed(Button.B)) {
+        } else if (input.buttonIsPressed(Button.B) && !(input.buttonIsPressed(Button.AB))) {
             Min += -1
             basic.showNumber(Min)
         } else if (input.buttonIsPressed(Button.AB)) {
@@ -63,7 +67,7 @@ function setMin () {
 function setHour () {
     Hour = 0
     ConTime = 0
-    basic.showString("Set hour")
+    basic.showString("hr")
     while (ConTime == 0) {
         basic.showNumber(Hour)
         if (input.buttonIsPressed(Button.A) && !(input.buttonIsPressed(Button.AB))) {
@@ -82,15 +86,19 @@ function setHour () {
         }
     }
 }
+function short () {
+    Kitronik_Robotics_Board.motorOn(Kitronik_Robotics_Board.Motors.Motor1, Kitronik_Robotics_Board.MotorDirection.Forward, 100)
+    Kitronik_Robotics_Board.motorOn(Kitronik_Robotics_Board.Motors.Motor1, Kitronik_Robotics_Board.MotorDirection.Reverse, 100)
+}
 function setStart () {
     ConTime = 0
-    basic.showString("Set start hrs")
+    basic.showString("sh")
     while (ConTime == 0) {
         basic.showNumber(startHr)
-        if (input.buttonIsPressed(Button.A)) {
+        if (input.buttonIsPressed(Button.A) && !(input.buttonIsPressed(Button.AB))) {
             startHr += 1
             basic.showNumber(startHr)
-        } else if (input.buttonIsPressed(Button.B)) {
+        } else if (input.buttonIsPressed(Button.B) && !(input.buttonIsPressed(Button.AB))) {
             startHr += -1
             basic.showNumber(startHr)
         } else if (input.buttonIsPressed(Button.AB)) {
@@ -103,13 +111,13 @@ function setStart () {
         }
     }
     ConTime = 0
-    basic.showString("Set start min")
+    basic.showString("sm")
     while (ConTime == 0) {
         basic.showNumber(startMin)
-        if (input.buttonIsPressed(Button.A)) {
+        if (input.buttonIsPressed(Button.A) && !(input.buttonIsPressed(Button.AB))) {
             startMin += 1
             basic.showNumber(startMin)
-        } else if (input.buttonIsPressed(Button.B)) {
+        } else if (input.buttonIsPressed(Button.B) && !(input.buttonIsPressed(Button.AB))) {
             startMin += -1
             basic.showNumber(startMin)
         } else if (input.buttonIsPressed(Button.AB)) {
@@ -124,13 +132,13 @@ function setStart () {
 }
 function setInter () {
     ConTime = 0
-    basic.showString("Set start hrs")
+    basic.showString("i")
     while (ConTime == 0) {
         basic.showNumber(interval)
-        if (input.buttonIsPressed(Button.A)) {
+        if (input.buttonIsPressed(Button.A) && !(input.buttonIsPressed(Button.AB))) {
             interval += 10
             basic.showNumber(interval)
-        } else if (input.buttonIsPressed(Button.B)) {
+        } else if (input.buttonIsPressed(Button.B) && !(input.buttonIsPressed(Button.AB))) {
             interval += -10
             basic.showNumber(interval)
         } else if (input.buttonIsPressed(Button.AB)) {
@@ -157,5 +165,10 @@ setStart()
 setInter()
 setEnd()
 basic.forever(function () {
-	
+    let timeMin = 0
+    let timeHr = 0
+    while (timeHr == endHr && timeMin == endMin) {
+        long()
+        break;
+    }
 })
