@@ -154,21 +154,36 @@ function setInter () {
 let interval = 0
 let startMin = 0
 let startHr = 0
-let Hour = 0
-let Min = 0
 let endMin = 0
 let endHr = 0
 let ConTime = 0
+let Min = 0
+let Hour = 0
 setHour()
 setMin()
 setStart()
 setInter()
 setEnd()
+let timeHr = Hour
+let timeMin = Min
 basic.forever(function () {
-    let timeMin = 0
-    let timeHr = 0
+    basic.pause(60000)
+    timeMin += 1
+    if (timeMin > 60) {
+        timeMin = 0
+        timeHr += 1
+        if (timeHr > 24) {
+            timeHr = 0
+        }
+    }
+})
+basic.forever(function () {
     while (timeHr == endHr && timeMin == endMin) {
         long()
         break;
+    }
+    while (timeHr > startHr && timeMin > startMin) {
+        basic.pause(interval * 60000)
+        short()
     }
 })
