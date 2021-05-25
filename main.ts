@@ -39,8 +39,16 @@ function setEnd () {
     }
 }
 function long () {
-    Kitronik_Robotics_Board.motorOn(Kitronik_Robotics_Board.Motors.Motor1, Kitronik_Robotics_Board.MotorDirection.Forward, 25)
-    Kitronik_Robotics_Board.motorOn(Kitronik_Robotics_Board.Motors.Motor1, Kitronik_Robotics_Board.MotorDirection.Reverse, 25)
+    pins.digitalWritePin(DigitalPin.P2, 1)
+    for (let index = 0; index < 12; index++) {
+        kitronik_motor_driver.motorOn(kitronik_motor_driver.Motors.Motor2, kitronik_motor_driver.MotorDirection.Forward, 25)
+        basic.pause(100)
+    }
+    for (let index = 0; index < 12; index++) {
+        kitronik_motor_driver.motorOn(kitronik_motor_driver.Motors.Motor2, kitronik_motor_driver.MotorDirection.Reverse, 25)
+        basic.pause(100)
+    }
+    pins.digitalWritePin(DigitalPin.P2, 0)
 }
 function setMin () {
     Min = 0
@@ -87,8 +95,17 @@ function setHour () {
     }
 }
 function short () {
-    Kitronik_Robotics_Board.motorOn(Kitronik_Robotics_Board.Motors.Motor1, Kitronik_Robotics_Board.MotorDirection.Forward, 100)
-    Kitronik_Robotics_Board.motorOn(Kitronik_Robotics_Board.Motors.Motor1, Kitronik_Robotics_Board.MotorDirection.Reverse, 100)
+    pins.digitalWritePin(DigitalPin.P2, 1)
+    for (let index = 0; index < 4; index++) {
+        kitronik_motor_driver.motorOn(kitronik_motor_driver.Motors.Motor2, kitronik_motor_driver.MotorDirection.Forward, 100)
+        basic.pause(100)
+    }
+    for (let index = 0; index < 4; index++) {
+        kitronik_motor_driver.motorOn(kitronik_motor_driver.Motors.Motor2, kitronik_motor_driver.MotorDirection.Reverse, 100)
+        basic.pause(100)
+    }
+    pins.digitalWritePin(DigitalPin.P2, 0)
+    kitronik_motor_driver.motorOff(kitronik_motor_driver.Motors.Motor2)
 }
 function setStart () {
     ConTime = 0
