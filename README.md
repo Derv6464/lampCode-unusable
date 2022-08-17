@@ -1,6 +1,8 @@
 
 > Open this page at [https://derv6464.github.io/lampcode/](https://derv6464.github.io/lampcode/)
 
+This lamp code has timers
+
 ## Use as Extension
 
 This repository can be added as an **extension** in MakeCode.
