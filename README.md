@@ -1,5 +1,5 @@
 This is code for a 5th year technology project. It is for a UV lamp for sanitisation. 
-This lamp code has timers
+This lamp code has timers. This code cannot run on a mirco:bit as it cannot deal with the timers
 
 
 > Open this page at [https://derv6464.github.io/lampcode/](https://derv6464.github.io/lampcode/)
